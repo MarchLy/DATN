@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/admin-fe-template-spring-boot-thymeleaf-master - Sao chép.iml" filepath="$PROJECT_DIR$/.idea/admin-fe-template-spring-boot-thymeleaf-master - Sao chép.iml" />
-      <module fileurl="file://$PROJECT_DIR$/admin-fe-template-spring-boot-thymeleaf-master/spring-boot-thymeleaf-staradmin-demo.iml" filepath="$PROJECT_DIR$/admin-fe-template-spring-boot-thymeleaf-master/spring-boot-thymeleaf-staradmin-demo.iml" />
     </modules>
   </component>
 </project>

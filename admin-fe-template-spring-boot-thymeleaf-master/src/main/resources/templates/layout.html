@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th=http://www.thymeleaf.org>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin</title>
+    <link rel="stylesheet" th:href="@{/vendors/iconfonts/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.addons.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/images/favicon.png}" />
+</head>
+
+<body>
+<div class="container-scroller">
+
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <img th:src="@{/images/logo.svg}" alt="logo" />
+            </a>
+            <a class="navbar-brand brand-logo-mini" href="index.html">
+                <img th:src="@{/images/logo-mini.svg}" alt="logo" />
+            </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown d-none d-xl-inline-block">
+                    <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <span class="profile-text">Hello, User!</span>
+                        <img class="img-xs rounded-circle" th:src="@{/images/faces/face1.jpg}" alt="Profile image">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                        <a class="dropdown-item mt-2">Manage Accounts</a>
+                        <a class="dropdown-item">Change Password</a>
+                        <a class="dropdown-item">Sign Out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid page-body-wrapper">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/thongKe}">
+                        <i class="menu-icon mdi mdi-television"></i>
+                        <span class="menu-title">Thống Kê</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/BanHangTQ}">
+                        <i class="menu-icon mdi mdi-cart"></i>
+                        <span class="menu-title">Bán Hàng Tại Quầy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/traHang}">
+                        <i class="menu-icon mdi mdi-undo"></i>
+                        <span class="menu-title">Trả Hàng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#product-management" aria-expanded="false" aria-controls="product-management">
+                        <i class="menu-icon mdi mdi-tshirt-crew"></i>
+                        <span class="menu-title">Quản Lý Sản Phẩm</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="product-management">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cube"></i> Sản Phẩm</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-format-list-bulleted"></i> Danh Mục</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-palette"></i> Màu Sắc</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-ruler"></i> Kích Cỡ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-tag"></i> Thương Hiệu</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-texture"></i> Chất Liệu</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-tshirt-crew"></i> Kiểu Tay Áo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-collage"></i> Kiểu Cổ Áo</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/hoaDOn}">
+                        <i class="menu-icon mdi mdi-file-document"></i>
+                        <span class="menu-title">Danh Sách Hóa Đơn</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#discountMenu" aria-expanded="false" aria-controls="discountMenu">
+
+                    <i class="menu-icon mdi mdi-sale"></i>
+                        <span class="menu-title">Quản Lý Giảm Giá</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="discountMenu">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/dotGiamGia}"><i class="mdi mdi-calendar"></i> Đợt Giảm Giá</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/phieuGiamGia}"><i class="mdi mdi-ticket-percent"></i> Phiếu Giảm Giá</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#user-management" aria-expanded="false" aria-controls="user-management">
+                        <i class="menu-icon mdi mdi-account"></i>
+                        <span class="menu-title">Quản Lý Tài Khoản</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="user-management">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="#">Danh Sách Người Dùng</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Phân Quyền</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="main-panel">
+            <div class="content-wrapper" layout:fragment="content">
+                Content is Here!
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/vendors/js/vendor.bundle.base.js}"></script>
+<script th:src="@{/vendors/js/vendor.bundle.addons.js}"></script>
+<script th:src="@{/js/off-canvas.js}"></script>
+<script th:src="@{/js/misc.js}"></script>
+<script th:src="@{/js/dashboard.js}"></script>
+
+
+</body>
+</html>

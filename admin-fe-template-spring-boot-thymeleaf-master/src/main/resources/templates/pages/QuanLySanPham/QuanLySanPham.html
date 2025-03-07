@@ -2,12 +2,86 @@
 <html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quản Lý Sản Phẩm</title>
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
-<section layout:fragment="content">
-quan ly dung metete tao moi
-</section>
-
+<body class="bg-gray-100 p-4">
+<div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center mb-6">QUẢN LÝ SẢN PHẨM</h1>
+    <div class="mb-4">
+        <label for="search" class="block mb-2 font-medium">Tên sản phẩm</label>
+        <div class="flex justify-between items-center">
+            <input id="search" type="text" placeholder="Tìm kiếm sản phẩm theo tên..." class="border border-gray-300 rounded-lg p-2 w-full max-w-md">
+            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg ml-4"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+        </div>
+    </div>
+    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex items-center">
+                <span class="mr-4">Trạng thái</span>
+                <label class="mr-4">
+                    <input type="radio" name="status" class="mr-1" checked> Tất cả
+                </label>
+                <label class="mr-4">
+                    <input type="radio" name="status" class="mr-1"> Đang bán
+                </label>
+                <label>
+                    <input type="radio" name="status" class="mr-1"> Ngừng bán
+                </label>
+            </div>
+            <div class="flex items-center">
+                <span class="mr-4">Danh mục</span>
+                <select class="border border-gray-300 rounded-lg p-2 w-80">
+                    <option>Chọn danh mục...</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white text-left">
+            <thead>
+            <tr>
+                <th class="py-2 px-4 border-b">#</th>
+                <th class="py-2 px-4 border-b">Mã</th>
+                <th class="py-2 px-4 border-b">Tên</th>
+                <th class="py-2 px-4 border-b">Số lượng</th>
+                <th class="py-2 px-4 border-b">Danh mục</th>
+                <th class="py-2 px-4 border-b">Trạng thái</th>
+                <th class="py-2 px-4 border-b">Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b">1</td>
+                <td class="py-2 px-4 border-b">SP006</td>
+                <td class="py-2 px-4 border-b">Áo Phông Nam Mùa Đông</td>
+                <td class="py-2 px-4 border-b">70</td>
+                <td class="py-2 px-4 border-b">Nam</td>
+                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
+                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border-b">2</td>
+                <td class="py-2 px-4 border-b">SP005</td>
+                <td class="py-2 px-4 border-b">Áo Phông Nữ Mùa Hè</td>
+                <td class="py-2 px-4 border-b">62</td>
+                <td class="py-2 px-4 border-b">Nữ</td>
+                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
+                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
+            </tr>
+            <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b">3</td>
+                <td class="py-2 px-4 border-b">SP004</td>
+                <td class="py-2 px-4 border-b">Áo Phông Luxury</td>
+                <td class="py-2 px-4 border-b">168</td>
+                <td class="py-2 px-4 border-b">Nam</td>
+                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
+                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

@@ -3,85 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản Lý Sản Phẩm</title>
-<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .container-fluid {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .status-label {
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            border-radius: 0.25em;
+        }
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .custom-card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .custom-card-header {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        .custom-card-body {
+            padding: 2rem;
+        }
+        .custom-input-group {
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .custom-input-group input {
+            border: 1px solid #ced4da;
+            box-shadow: none;
+        }
+        .custom-input-group .input-group-append .btn {
+            border: none;
+            background-color: #6f42c1;
+            color: white;
+        }
+        .custom-select {
+            border-radius: 0.5rem;
+            width: 100%;
+        }
+
+    </style>
 </head>
-<body class="bg-gray-100 p-4">
-<div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold text-center mb-6">QUẢN LÝ SẢN PHẨM</h1>
-    <div class="mb-4">
-        <label for="search" class="block mb-2 font-medium">Tên sản phẩm</label>
-        <div class="flex justify-between items-center">
-            <input id="search" type="text" placeholder="Tìm kiếm sản phẩm theo tên..." class="border border-gray-300 rounded-lg p-2 w-full max-w-md">
-            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg ml-4"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+<body>
+<section layout:fragment="content" class="bg-gray-100">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header custom-card-header text-center">
+                <h1 class="mb-0">QUẢN LÝ SẢN PHẨM</h1>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="mb-4">
+                    <label for="search" class="font-weight-bold">Tên sản phẩm</label>
+                    <div class="d-flex align-items-center">
+                        <div class="input-group custom-input-group mb-3" style="max-width: 500px;">
+                            <input id="search" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm theo tên...">
+                        </div>
+                        <button class="btn btn-purple ml-2 mb-3" style="background-color: #6f42c1; color: white;"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+                    </div>
+                </div>
+                <div class="bg-light p-3 rounded mb-4">
+                    <div class="form-row align-items-center">
+                        <div class="col-md-6">
+                            <label class="mr-2">Trạng thái</label>
+                            <div class="w-100"></div> <!-- Line break -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="statusAll" style="margin: 0 0 0 3px" checked>
+                                <label class="form-check-label" for="statusAll">Tất cả</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="statusActive" style="margin: 0 0 0 3px">
+                                <label class="form-check-label" for="statusActive">Đang bán</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="statusInactive" style="margin: 0 0 0 3px">
+                                <label class="form-check-label" for="statusInactive">Ngừng bán</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="mr-2">Danh mục</label>
+                            <div class="w-100"></div> <!-- Line break -->
+                            <select class="form-control custom-select" style="width: 100%;">
+                                <option>Chọn danh mục...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Mã</th>
+                            <th>Tên</th>
+                            <th>Số lượng</th>
+                            <th>Danh mục</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SP006</td>
+                            <td>Áo Phông Nam Mùa Đông</td>
+                            <td>70</td>
+                            <td>Nam</td>
+                            <td><span class="status-label status-active">Đang bán</span></td>
+                            <td><i class="fas fa-edit text-primary cursor-pointer"></i></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>SP005</td>
+                            <td>Áo Phông Nữ Mùa Hè</td>
+                            <td>62</td>
+                            <td>Nữ</td>
+                            <td><span class="status-label status-active">Đang bán</span></td>
+                            <td><i class="fas fa-edit text-primary cursor-pointer"></i></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>SP004</td>
+                            <td>Áo Phông Luxury</td>
+                            <td>168</td>
+                            <td>Nam</td>
+                            <td><span class="status-label status-active">Đang bán</span></td>
+                            <td><i class="fas fa-edit text-primary cursor-pointer"></i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-        <div class="flex justify-between items-center mb-4">
-            <div class="flex items-center">
-                <span class="mr-4">Trạng thái</span>
-                <label class="mr-4">
-                    <input type="radio" name="status" class="mr-1" checked> Tất cả
-                </label>
-                <label class="mr-4">
-                    <input type="radio" name="status" class="mr-1"> Đang bán
-                </label>
-                <label>
-                    <input type="radio" name="status" class="mr-1"> Ngừng bán
-                </label>
-            </div>
-            <div class="flex items-center">
-                <span class="mr-4">Danh mục</span>
-                <select class="border border-gray-300 rounded-lg p-2 w-80">
-                    <option>Chọn danh mục...</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white text-left">
-            <thead>
-            <tr>
-                <th class="py-2 px-4 border-b">#</th>
-                <th class="py-2 px-4 border-b">Mã</th>
-                <th class="py-2 px-4 border-b">Tên</th>
-                <th class="py-2 px-4 border-b">Số lượng</th>
-                <th class="py-2 px-4 border-b">Danh mục</th>
-                <th class="py-2 px-4 border-b">Trạng thái</th>
-                <th class="py-2 px-4 border-b">Hành động</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="bg-gray-50">
-                <td class="py-2 px-4 border-b">1</td>
-                <td class="py-2 px-4 border-b">SP006</td>
-                <td class="py-2 px-4 border-b">Áo Phông Nam Mùa Đông</td>
-                <td class="py-2 px-4 border-b">70</td>
-                <td class="py-2 px-4 border-b">Nam</td>
-                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
-                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border-b">2</td>
-                <td class="py-2 px-4 border-b">SP005</td>
-                <td class="py-2 px-4 border-b">Áo Phông Nữ Mùa Hè</td>
-                <td class="py-2 px-4 border-b">62</td>
-                <td class="py-2 px-4 border-b">Nữ</td>
-                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
-                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
-            </tr>
-            <tr class="bg-gray-50">
-                <td class="py-2 px-4 border-b">3</td>
-                <td class="py-2 px-4 border-b">SP004</td>
-                <td class="py-2 px-4 border-b">Áo Phông Luxury</td>
-                <td class="py-2 px-4 border-b">168</td>
-                <td class="py-2 px-4 border-b">Nam</td>
-                <td class="py-2 px-4 border-b"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Đang bán</span></td>
-                <td class="py-2 px-4 border-b"><i class="fas fa-edit text-purple-600 cursor-pointer"></i></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</section>
+
 </body>
 </html>

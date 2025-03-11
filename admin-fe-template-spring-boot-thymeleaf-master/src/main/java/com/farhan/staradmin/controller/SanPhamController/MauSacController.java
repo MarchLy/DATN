@@ -1,32 +1,32 @@
 package com.farhan.staradmin.controller.SanPhamController;
 
+import com.farhan.staradmin.entity.MauSac;
 import com.farhan.staradmin.entity.SanPham;
-import com.farhan.staradmin.repository.SanPhamRepo;
+import com.farhan.staradmin.service.MauSacService;
 import com.farhan.staradmin.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/san-pham")
-public class SanPhamController {
+@RequestMapping("/mau-sac")
+public class MauSacController {
 
     @Autowired
-    SanPhamService sanPhamService;
+    MauSacService mauSacService;
 
     @GetMapping("/hien-thi")
-    public String listSanPham(Model model,
+    public String listMauSac(Model model,
                               @RequestParam(defaultValue = "0") int page,
                               @RequestParam(defaultValue = "5") int size) {
-        Page<SanPham> pageSanPham = sanPhamService.getAllSanPham(page, size);
-        model.addAttribute("listSanPham", pageSanPham.getContent());
+        Page<MauSac> mauSacPage = mauSacService.getAllMauSac(page, size);
+        model.addAttribute("listMauSac", mauSacPage.getContent());
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", pageSanPham.getTotalPages());
-        return "/pages/QuanLySanPham/QuanLySanPham";
+        model.addAttribute("totalPages", mauSacPage.getTotalPages());
+        return "/pages/QuanLySanPham/mau-sac";
     }
 }

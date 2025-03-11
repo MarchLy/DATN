@@ -16,7 +16,7 @@
 <div class="container-scroller">
 
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="padding: 0">
             <a class="navbar-brand brand-logo" href="index.html">
                 <img th:src="@{/images/logo.svg}" alt="logo" />
             </a>
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper" style="padding: 63px 0 0 0">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
@@ -72,7 +72,7 @@
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"><a class="nav-link" th:href="@{/san-pham/hien-thi}"><i class="mdi mdi-cube"></i> Sản Phẩm</a></li>
                             <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-format-list-bulleted"></i> Danh Mục</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-palette"></i> Màu Sắc</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/mau-sac/hien-thi}"><i class="mdi mdi-palette"></i> Màu Sắc</a></li>
                             <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-ruler"></i> Kích Cỡ</a></li>
                             <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-tag"></i> Thương Hiệu</a></li>
                             <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-texture"></i> Chất Liệu</a></li>
@@ -120,7 +120,7 @@
         </nav>
 
         <div class="main-panel">
-            <div class="content-wrapper" layout:fragment="content">
+            <div class="content-wrapper" layout:fragment="content" style="padding: 24px 0">
                 Content is Here!
             </div>
         </div>

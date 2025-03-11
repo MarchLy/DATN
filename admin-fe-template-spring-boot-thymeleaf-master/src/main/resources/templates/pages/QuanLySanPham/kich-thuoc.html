@@ -6,16 +6,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        .status-label {
-            display: inline-block;
-            padding: 0.25em 0.5em;
-            border-radius: 0.25em;
-        }
 
-        .status-active {
-            background-color: #d4edda;
-            color: #155724;
-        }
 
         .table th, .table td {
             vertical-align: middle;
@@ -116,50 +107,20 @@
     <div class="container-fluid">
         <div class="card custom-card">
             <div class="card-header custom-card-header text-center">
-                <h1 class="mb-0">QUẢN LÝ SẢN PHẨM</h1>
+                <h1 class="mb-0">QUẢN LÝ KÍCH THƯỚC</h1>
             </div>
             <div class="card-body custom-card-body">
                 <div class="mb-4">
-                    <label for="search" class="font-weight-bold">Tên sản phẩm</label>
+                    <label for="search" class="font-weight-bold">Tên Kích thước</label>
                     <div class="d-flex align-items-center">
-                        <div class="input-group custom-input-group mb-3" style="max-width: 600px;">
+                        <div class="input-group custom-input-group mb-3" style="max-width: 600px; margin-right: 50px">
                             <input id="search" type="text" class="form-control"
-                                   placeholder="Tìm kiếm sản phẩm theo tên..."
+                                   placeholder="Tìm kiếm kích thước theo tên..."
                                    style="border: 1px solid black; border-radius: 5px;">
                         </div>
                         <button class="btn btn-purple ml-2 mb-3" style="background-color: #6f42c1; color: white;"><i
-                                class="fas fa-plus"></i> Thêm sản phẩm
+                                class="fas fa-plus"></i> Thêm Kích thước
                         </button>
-                    </div>
-                </div>
-                <div class="bg-light p-3 rounded mb-4">
-                    <div class="form-row align-items-center">
-                        <div class="col-md-6">
-                            <label class="mr-2">Trạng thái</label>
-                            <div class="w-100"></div> <!-- Line break -->
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="statusAll"
-                                       style="margin: 0 0 0 3px" checked>
-                                <label class="form-check-label" for="statusAll">Tất cả</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="statusActive"
-                                       style="margin: 0 0 0 3px">
-                                <label class="form-check-label" for="statusActive">Đang bán</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="statusInactive"
-                                       style="margin: 0 0 0 3px">
-                                <label class="form-check-label" for="statusInactive">Ngừng bán</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="mr-2">Danh mục</label>
-                            <div class="w-100"></div> <!-- Line break -->
-                            <select class="form-control custom-select" style="width: 100%;">
-                                <option>Chọn danh mục...</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -169,21 +130,16 @@
                             <th>#</th>
                             <th>Mã</th>
                             <th>Tên</th>
-                            <th>Số lượng</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Chức năng</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="sp, i : ${listSanPham}">
+                        <tr th:each="kt, i : ${listKichThuoc}">
                             <td th:text="${i.index+1}"></td>
-                            <td th:text="${sp.maSp}"></td>
-                            <td th:text="${sp.soLuong}"></td>
-                            <td th:text="${sp.tenSp}"></td>
-                            <td><span class="status-label status-active"
-                                      th:text="${sp.trangThai == true ? 'Dang ban' : 'khong ban'}"></span></td>
+                            <td th:text="${kt.}"></td>
+                            <td th:text="${m.tenMauSac}"></td>
                             <td>
-                                <a th:href="@{/san-pham/detail/*{sp.id}}"><i
+                                <a th:href="@{/mau-sac/detail/*{m.id}}"><i
                                         class="fas fa-edit text-primary cursor-pointer"></i></a>
                             </td>
                         </tr>
@@ -195,7 +151,7 @@
                 <ul class="pagination justify-content-center">
                     <!-- Nút "Trước" -->
                     <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                        <a class="page-link" th:href="@{/san-pham/hien-thi(page=${currentPage - 1}, size=5)}">
+                        <a class="page-link" th:href="@{/mau-sac/hien-thi(page=${currentPage - 1}, size=5)}">
                             &lt;
                         </a>
                     </li>
@@ -204,13 +160,13 @@
                     <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
                         class="page-item"
                         th:classappend="${pageNum == currentPage} ? 'active'">
-                        <a class="page-link" th:href="@{/san-pham/hien-thi(page=${pageNum}, size=5)}"
+                        <a class="page-link" th:href="@{/mau-sac/hien-thi(page=${pageNum}, size=5)}"
                            th:text="${pageNum + 1}"></a>
                     </li>
 
                     <!-- Nút "Tiếp" -->
                     <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
-                        <a class="page-link" th:href="@{/san-pham/hien-thi(page=${currentPage + 1}, size=5)}">
+                        <a class="page-link" th:href="@{/mau-sac/hien-thi(page=${currentPage + 1}, size=5)}">
                             &gt;
                         </a>
                     </li>

@@ -1,9 +1,7 @@
 package com.farhan.staradmin.controller.SanPhamController;
 
 import com.farhan.staradmin.entity.MauSac;
-import com.farhan.staradmin.entity.SanPham;
 import com.farhan.staradmin.service.MauSacService;
-import com.farhan.staradmin.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

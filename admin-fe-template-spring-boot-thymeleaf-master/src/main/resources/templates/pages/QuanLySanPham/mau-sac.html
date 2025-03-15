@@ -136,8 +136,8 @@
                         <tbody>
                         <tr th:each="m, i : ${listMauSac}">
                             <td th:text="${i.index+1}"></td>
-                            <td th:text="${m.maMauSac}"></td>
-                            <td th:text="${m.tenMauSac}"></td>
+                            <td th:text="${m.maMau}"></td>
+                            <td th:text="${m.tenMau}"></td>
                             <td>
                                 <a th:href="@{/mau-sac/detail/*{m.id}}"><i
                                         class="fas fa-edit text-primary cursor-pointer"></i></a>

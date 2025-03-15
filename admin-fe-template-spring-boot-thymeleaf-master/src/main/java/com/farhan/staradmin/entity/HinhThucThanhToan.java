@@ -14,22 +14,17 @@ import org.hibernate.annotations.Nationalized;
 @Getter
 @Setter
 @Entity
-@Table(name = "thuong_hieu")
-public class ThuongHieu {
+@Table(name = "hinh_thuc_thanh_toan")
+public class HinhThucThanhToan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 10)
-    @Nationalized
-    @Column(name = "ma_thuong_hieu", length = 10)
-    private String maThuongHieu;
-
     @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_thuong_hieu", length = 50)
-    private String tenThuongHieu;
+    @Column(name = "ten_hinh_thuc", length = 50)
+    private String tenHinhThuc;
 
     @Column(name = "trang_thai")
     private Boolean trangThai;

@@ -1,7 +1,11 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,20 +21,17 @@ public class TayAo {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
-    @NotNull
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_tay_ao", nullable = false, length = 50)
+    @Column(name = "ma_tay_ao", length = 10)
     private String maTayAo;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_tay_ao", nullable = false)
-    private String tenTayAo;
+    @Column(name = "loai_tay_ao", length = 50)
+    private String loaiTayAo;
 
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }

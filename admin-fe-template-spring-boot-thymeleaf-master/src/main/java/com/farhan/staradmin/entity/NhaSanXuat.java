@@ -1,7 +1,11 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,26 +21,22 @@ public class NhaSanXuat {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
-    @NotNull
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_nsx", nullable = false, length = 50)
+    @Column(name = "ma_nsx", length = 10)
     private String maNsx;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_nsx", nullable = false)
+    @Column(name = "ten_nsx", length = 50)
     private String tenNsx;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 50)
     @Nationalized
-    @Column(name = "dia_chi", nullable = false)
+    @Column(name = "dia_chi", length = 50)
     private String diaChi;
 
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }

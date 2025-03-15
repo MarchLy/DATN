@@ -136,7 +136,7 @@
                         <tbody>
                         <tr th:each="kt, i : ${listKichThuoc}">
                             <td th:text="${i.index+1}"></td>
-                            <td th:text="${kt.}"></td>
+                            <td th:text="${kt.maMauSac}"></td>
                             <td th:text="${m.tenMauSac}"></td>
                             <td>
                                 <a th:href="@{/mau-sac/detail/*{m.id}}"><i

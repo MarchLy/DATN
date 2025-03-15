@@ -11,11 +11,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "thuong_hieu")
-public class ThuongHieu {
+@Table(name = "dot_giam_gia")
+public class DotGiamGia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,15 +25,24 @@ public class ThuongHieu {
 
     @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_thuong_hieu", length = 10)
-    private String maThuongHieu;
+    @Column(name = "ma_dot_giam_gia", length = 10)
+    private String maDotGiamGia;
 
     @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_thuong_hieu", length = 50)
-    private String tenThuongHieu;
+    @Column(name = "ten_dot_giam_gia", length = 50)
+    private String tenDotGiamGia;
+
+    @Column(name = "ngay_bat_dau")
+    private Instant ngayBatDau;
+
+    @Column(name = "ngay_ket_thuc")
+    private Instant ngayKetThuc;
+
+    @Column(name = "loai_giam_gia")
+    private Boolean loaiGiamGia;
 
     @Column(name = "trang_thai")
-    private Boolean trangThai;
+    private Integer trangThai;
 
 }

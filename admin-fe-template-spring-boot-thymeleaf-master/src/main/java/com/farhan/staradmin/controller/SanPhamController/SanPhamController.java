@@ -1,14 +1,12 @@
 package com.farhan.staradmin.controller.SanPhamController;
 
 import com.farhan.staradmin.entity.SanPham;
-import com.farhan.staradmin.repository.SanPhamRepo;
 import com.farhan.staradmin.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

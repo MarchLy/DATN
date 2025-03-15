@@ -14,8 +14,8 @@ import org.hibernate.annotations.Nationalized;
 @Getter
 @Setter
 @Entity
-@Table(name = "thuong_hieu")
-public class ThuongHieu {
+@Table(name = "khach_hang")
+public class KhachHang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,13 +23,26 @@ public class ThuongHieu {
 
     @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_thuong_hieu", length = 10)
-    private String maThuongHieu;
+    @Column(name = "ma_khach_hang", length = 10)
+    private String maKhachHang;
 
     @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_thuong_hieu", length = 50)
-    private String tenThuongHieu;
+    @Column(name = "ho_ten", length = 50)
+    private String hoTen;
+
+    @Column(name = "gioi_tinh")
+    private Boolean gioiTinh;
+
+    @Size(max = 13)
+    @Nationalized
+    @Column(name = "sdt", length = 13)
+    private String sdt;
+
+    @Size(max = 100)
+    @Nationalized
+    @Column(name = "dia_chi", length = 100)
+    private String diaChi;
 
     @Column(name = "trang_thai")
     private Boolean trangThai;

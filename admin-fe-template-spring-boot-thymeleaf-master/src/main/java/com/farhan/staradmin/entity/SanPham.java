@@ -1,7 +1,11 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,41 +21,25 @@ public class SanPham {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
-    @NotNull
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_sp", nullable = false, length = 50)
+    @Column(name = "ma_sp", length = 10)
     private String maSp;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_sp", nullable = false)
+    @Column(name = "ten_sp", length = 50)
     private String tenSp;
 
-    @NotNull
-    @Column(name = "so_luong", nullable = false)
+    @Column(name = "so_luong")
     private Integer soLuong;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 100)
     @Nationalized
-    @Column(name = "mo_ta", nullable = false)
+    @Column(name = "mo_ta", length = 100)
     private String moTa;
 
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
-    @Override
-    public String toString() {
-        return "SanPham{" +
-                "id=" + id +
-                ", maSp='" + maSp + '\'' +
-                ", tenSp='" + tenSp + '\'' +
-                ", soLuong=" + soLuong +
-                ", moTa='" + moTa + '\'' +
-                ", trangThai=" + trangThai +
-                '}';
-    }
 }

@@ -1,7 +1,11 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,20 +21,17 @@ public class MauSac {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Size(max = 10)
+    @Nationalized
+    @Column(name = "ma_mau", length = 10)
+    private String maMau;
+
     @Size(max = 50)
-    @NotNull
     @Nationalized
-    @Column(name = "ma_mau_sac", nullable = false, length = 50)
-    private String maMauSac;
+    @Column(name = "ten_mau", length = 50)
+    private String tenMau;
 
-    @Size(max = 255)
-    @NotNull
-    @Nationalized
-    @Column(name = "ten_mau_sac", nullable = false)
-    private String tenMauSac;
-
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }

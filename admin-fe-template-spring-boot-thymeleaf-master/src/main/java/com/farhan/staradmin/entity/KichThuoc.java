@@ -1,11 +1,17 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -17,36 +23,29 @@ public class KichThuoc {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
-    @NotNull
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_kich_thuoc", nullable = false, length = 50)
+    @Column(name = "ma_kich_thuoc", length = 10)
     private String maKichThuoc;
 
-    @Size(max = 20)
-    @NotNull
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "\"size\"", nullable = false, length = 20)
+    @Column(name = "\"size\"", length = 10)
     private String size;
 
-    @NotNull
-    @Column(name = "rong_ao", nullable = false)
-    private Double rongAo;
+    @Column(name = "rong_ao", precision = 18, scale = 2)
+    private BigDecimal rongAo;
 
-    @NotNull
-    @Column(name = "dai_ao", nullable = false)
-    private Double daiAo;
+    @Column(name = "dai_ao", precision = 18, scale = 2)
+    private BigDecimal daiAo;
 
-    @NotNull
-    @Column(name = "rong_vai", nullable = false)
-    private Double rongVai;
+    @Column(name = "rong_vai", precision = 18, scale = 2)
+    private BigDecimal rongVai;
 
-    @NotNull
-    @Column(name = "dai_tay", nullable = false)
-    private Double daiTay;
+    @Column(name = "dai_tay", precision = 18, scale = 2)
+    private BigDecimal daiTay;
 
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }

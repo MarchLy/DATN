@@ -1,7 +1,14 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,93 +26,80 @@ public class ChiTietSanPham {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_hang", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hang")
     private Hang idHang;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_chat_lieu", nullable = false)
-    private ChatLieu idChatLieu;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_kich_thuoc", nullable = false)
-    private KichThuoc idKichThuoc;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_mau_sac", nullable = false)
-    private MauSac idMauSac;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_thuong_hieu", nullable = false)
-    private ThuongHieu idThuongHieu;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_xuat_xu", nullable = false)
-    private XuatXu idXuatXu;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_nha_san_xuat", nullable = false)
-    private NhaSanXuat idNhaSanXuat;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_san_pham", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_san_pham")
     private SanPham idSanPham;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_khuy_ao", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_chat_lieu")
+    private ChatLieu idChatLieu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_kich_thuoc")
+    private KichThuoc idKichThuoc;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_mau_sac")
+    private MauSac idMauSac;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_thuong_hieu")
+    private ThuongHieu idThuongHieu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_xuat_xu")
+    private XuatXu idXuatXu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_nha_san_xuat")
+    private NhaSanXuat idNhaSanXuat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_khuy_ao")
     private KhuyAo idKhuyAo;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_co_ao", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_co_ao")
     private CoAo idCoAo;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_tay_ao", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tay_ao")
     private TayAo idTayAo;
 
-    @Size(max = 50)
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hinh_anh")
+    private HinhAnh idHinhAnh;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_danh_muc")
+    private DanhMuc idDanhMuc;
+
+    @Size(max = 10)
     @Nationalized
-    @Column(name = "ma_chi_tiet_sp", nullable = false, length = 50)
+    @Column(name = "ma_chi_tiet_sp", length = 10)
     private String maChiTietSp;
 
-    @Size(max = 255)
-    @NotNull
+    @Size(max = 50)
     @Nationalized
-    @Column(name = "ten_chi_tiet_sp", nullable = false)
+    @Column(name = "ten_chi_tiet_sp", length = 50)
     private String tenChiTietSp;
 
-    @NotNull
-    @Column(name = "so_luong", nullable = false)
+    @Column(name = "so_luong")
     private Integer soLuong;
 
-    @NotNull
-    @Column(name = "don_gia", nullable = false, precision = 18, scale = 2)
+    @Column(name = "don_gia", precision = 18, scale = 2)
     private BigDecimal donGia;
 
-    @Size(max = 255)
+    @Size(max = 100)
     @Nationalized
-    @Column(name = "ghi_chu")
+    @Column(name = "ghi_chu", length = 100)
     private String ghiChu;
 
-    @Size(max = 255)
-    @Nationalized
-    @Column(name = "hinh_anh")
-    private String hinhAnh;
-
-    @NotNull
-    @Column(name = "trang_thai", nullable = false)
-    private Boolean trangThai = false;
+    @Column(name = "trang_thai")
+    private Boolean trangThai;
 
 }

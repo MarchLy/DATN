@@ -2,8 +2,6 @@ package com.farhan.staradmin.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
@@ -13,6 +11,7 @@ import org.hibernate.annotations.Nationalized;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,7 +19,6 @@ import java.time.Instant;
 @Table(name = "phieu_giam_gia")
 public class PhieuGiamGia {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -38,18 +36,21 @@ public class PhieuGiamGia {
     private Integer soLuong;
 
     @Column(name = "ngay_bat_dau")
-    private Instant ngayBatDau;
+    private Date ngayBatDau;
 
     @Column(name = "ngay_ket_thuc")
-    private Instant ngayKetThuc;
+    private Date ngayKetThuc;
 
     @Size(max = 50)
     @Nationalized
     @Column(name = "dieu_kien", length = 50)
-    private String dieuKien;
+    private Integer dieuKien;
 
     @Column(name = "loai")
-    private Boolean loai;
+    private Integer loai;
+
+    @Column(name = "kieu")
+    private Boolean kieu;
 
     @Column(name = "gia_tri_toi_thieu", precision = 18, scale = 2)
     private BigDecimal giaTriToiThieu;
@@ -60,4 +61,11 @@ public class PhieuGiamGia {
     @Column(name = "trang_thai")
     private Boolean trangThai;
 
+    public String getLoaiHienThi() {
+        if (loai <= 100) { // Giả sử <= 100 là %
+            return loai + "%";
+        } else { // Nếu lớn hơn 100 thì là tiền
+            return String.format("%,d đ", loai);
+        }
+    }
 }

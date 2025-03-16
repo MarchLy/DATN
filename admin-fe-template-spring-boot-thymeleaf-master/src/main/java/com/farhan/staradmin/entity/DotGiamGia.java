@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
 import java.time.Instant;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -34,15 +35,21 @@ public class DotGiamGia {
     private String tenDotGiamGia;
 
     @Column(name = "ngay_bat_dau")
-    private Instant ngayBatDau;
+    private Date ngayBatDau;
 
     @Column(name = "ngay_ket_thuc")
-    private Instant ngayKetThuc;
+    private Date ngayKetThuc;
 
-    @Column(name = "loai_giam_gia")
-    private Boolean loaiGiamGia;
+    @Column(name = "gia_tri")
+    private Integer giaTri;
 
     @Column(name = "trang_thai")
     private Integer trangThai;
 
+    public String getGiaTri() {
+        if (giaTri <= 100) { // Giả sử <= 100 là %
+            return giaTri + "%";
+        }
+        return giaTri + "%";
+    }
 }

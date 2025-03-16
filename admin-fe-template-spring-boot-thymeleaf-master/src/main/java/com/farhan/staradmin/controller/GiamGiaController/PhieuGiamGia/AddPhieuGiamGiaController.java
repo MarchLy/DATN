@@ -8,6 +8,6 @@ public class AddPhieuGiamGiaController {
     @GetMapping("/ADDphieuGiamGia")
     public String show(){
 
-        return "pages/QuanLyGiamGia/PhieuGiamGiaView/AddPhieuGiamGia";
+        return "add-phieu-giam-gia";
     }
 }

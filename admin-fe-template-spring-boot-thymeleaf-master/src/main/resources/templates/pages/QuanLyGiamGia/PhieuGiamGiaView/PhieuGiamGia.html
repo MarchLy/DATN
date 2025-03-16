@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="vi" layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<html lang="vi" layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
     .filter-section {
       background: #ffffff;
@@ -18,102 +18,91 @@
       border-radius: 6px;
       font-size: 14px;
     }
-    .filter-title {
-      font-size: 20px;
+    .search-bar {
+      width: 100%;
+      padding-left: 2.5rem;
+    }
+    .search-container {
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+    input[type="text"].date-input:hover {
+      type: date;
+    }
+    table th {
       font-weight: bold;
-      display: flex;
-      align-items: center;
+      text-align: center;
+      font-size: 10.0em;
     }
-    .filter-title i {
-      margin-right: 8px;
+    table td {
+      text-align: center;
     }
-    .form-control {
-      height: 40px;
-    }
-    .search-input-group .form-control {
-      border-radius: 5px 0 0 5px;
-    }
-    .search-btn {
-      border-radius: 0 5px 5px 0;
-      border-left: none;
-      background-color: #007bff;
-      color: white;
-    }
-    .search-btn:hover {
-      background-color: #0056b3;
-    }
+
   </style>
   <title>Danh sách Phiếu giảm giá</title>
+
 </head>
 <body>
 <section layout:fragment="content">
+
   <div class="container mt-4">
-    <form class="filter-section p-3 shadow-sm rounded bg-white">
-      <div class="d-flex align-items-center mb-3">
-        <i class="fas fa-filter me-2"></i>
-        <h5 class="mb-0">Bộ lọc</h5>
+    <h4 class="mb-3">Phiếu giảm giá</h4>
+    <form class="filter-section p-3 shadow-sm rounded bg-white" th:action="@{/search}" method="get">
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-md-6 search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="form-control search-bar" placeholder="Tìm phiếu giảm giá theo mã hoặc tên">
+        </div>
+        <div class="col-md-2 ms-auto">
+          <a th:href="@{/add-phieu-giam-gia}" class="btn btn-primary w-100">
+            <i class="fas fa-plus"></i> Tạo mới
+          </a>
+        </div>
       </div>
-
-      <div class="row g-3">
-        <div class="col-md-3">
-          <label class="form-label">Tìm kiếm:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Tìm kiếm đơn hàng...">
-            <button class="btn btn-outline-secondary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-md-2">
+          <input type="text" class="form-control date-input" placeholder="Từ ngày" onmouseover="this.type='date'" onmouseleave="if(!this.value) this.type='text';">
         </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Trạng thái:</label>
+        <div class="col-md-2">
+          <input type="text" class="form-control date-input" placeholder="Đến ngày" onmouseover="this.type='date'" onmouseleave="if(!this.value) this.type='text';">
+        </div>
+        <div class="col-md-2">
           <select class="form-select">
-            <option selected>Tất cả</option>
-            <option>Còn hiệu lực</option>
-            <option>Đã kết thúc</option>
+            <option selected>Kiểu</option>
+            <option value="1">Cá nhân</option>
+            <option value="2">Công khai</option>
           </select>
         </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Kiểu giảm:</label>
+        <div class="col-md-2">
           <select class="form-select">
-            <option selected>Tất cả</option>
-            <option>Giảm giá %</option>
-            <option>Giảm giá tiền mặt</option>
+            <option selected>Loại</option>
+            <option value="1">Giảm giá</option>
+            <option value="2">Miễn phí vận chuyển</option>
           </select>
         </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Loại:</label>
+        <div class="col-md-2">
           <select class="form-select">
-            <option selected>Tất cả</option>
-            <option>Công khai</option>
-            <option>Cá nhân</option>
+            <option selected>Trạng thái</option>
+            <option value="1">Đang diễn ra</option>
+            <option value="2">Đã kết thúc</option>
           </select>
         </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Khoảng giá:</label>
-          <div class="d-flex">
-            <input type="number" class="form-control me-2" placeholder="Giá từ">
-            <input type="number" class="form-control" placeholder="Giá đến">
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <label class="form-label">Khoảng thời gian:</label>
-          <div class="d-flex">
-            <input type="date" class="form-control me-2">
-            <input type="date" class="form-control">
-          </div>
+        <div class="col-md-2 text-end">
+          <button class="btn btn-success w-100">
+            <i class="fas fa-file-excel"></i> Xuất Excel
+          </button>
         </div>
       </div>
     </form>
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h5><i class="fas fa-list"></i> Danh sách Phiếu giảm giá</h5>
-        <a th:href="@{/ADDphieuGiamGia}">
-        <button   type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm phiếu giảm giá</button></a>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
@@ -122,50 +111,38 @@
             <th>STT</th>
             <th>Mã</th>
             <th>Tên</th>
-            <th>Giá trị giảm</th>
+            <th>Kiểu</th>
             <th>Loại</th>
-            <th>Giá trị tối thiểu</th>
-            <th>Giá trị tối đa</th>
             <th>Số lượng</th>
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
             <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <th>Hành động</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody th:each="pgg,i:${listPgg}">
           <tr>
-            <td>1</td>
-            <td>VBS06</td>
-            <td>Testtt</td>
-            <td>25%</td>
-            <td>Công khai</td>
-            <td>100,000 đ</td>
-            <td>400,000 đ</td>
-            <td>5</td>
-            <td>23:36:00 19/01/2025</td>
-            <td>23:35:00 21/01/2025</td>
-            <td><span class="badge bg-primary status-badge">Đang diễn ra</span></td>
+            <td th:text="${i.count}"></td>
+            <td th:text="${pgg.maPhieuGiamGia}"></td>
+            <td th:text="${pgg.tenPhieuGiamGia}"></td>
+            <td th:text="${pgg.kieu==true?'Cá nhân':'Công khai'}"></td>
+            <td th:text="${pgg.loaiHienThi}"></td>
+            <td th:text="${pgg.soLuong}"></td>
+            <td th:text="${pgg.ngayBatDau}"></td>
+            <td th:text="${pgg.ngayKetThuc}"></td>
             <td>
-              <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              <span class="badge status-badge text-white"
+                    th:classappend="${pgg.trangThai == true} ? 'bg-primary' : 'bg-danger'"
+                    th:text="${pgg.trangThai == true ? 'Đang diễn ra' : 'Đã kết thúc'}">
+              </span>
             </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>VBS05</td>
-            <td>Voucher đặc biệt mùa đông</td>
-            <td>10%</td>
-            <td>Cá nhân</td>
-            <td>100,000 đ</td>
-            <td>200,000 đ</td>
-            <td>1</td>
-            <td>08:43:00 17/01/2025</td>
-            <td>08:41:00 18/01/2025</td>
-            <td><span class="badge bg-danger status-badge">Đã kết thúc</span></td>
             <td>
               <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              <form th:action="@{/xoa-phieu-giam-gia/{id}(id=${pgg.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
             </td>
           </tr>
           </tbody>

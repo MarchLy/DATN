@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="vi" layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="vi" layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .container {
             background: #fff;
             padding: 30px;
@@ -18,76 +20,199 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 40px auto;
         }
+
         .form-label {
             font-weight: bold;
         }
-        .btn-custom {
-            width: 100%;
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
         }
+
+        .sub-title {
+            font-size: 20px;
+            color: gray;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        /* Tạo khoảng trống bên phải input để chứa 2 icon */
+        .form-floating input {
+            padding-right: 4rem; /* Tăng khoảng cách để vừa 2 icon */
+            font-size: 1rem;
+        }
+
+        /* Căn chỉnh label */
+        .form-floating label {
+            padding-left: 12px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Khi input có dữ liệu hoặc focus, label nổi lên */
+        .form-floating input:focus + label,
+        .form-floating input:not(:placeholder-shown) + label {
+            transform: translateY(-12px);
+            font-size: 0.75rem;
+            opacity: 1;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Căn chỉnh icon bên phải */
+        .icon-group {
+            position: absolute;
+            right: 20px; /* Cách viền phải */
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Tạo khoảng cách giữa 2 icon */
+            pointer-events: none;
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
     </style>
+    <script>
+        function toggleCustomerSelection() {
+            var isPersonal = document.getElementById('personal').checked;
+            var checkboxes = document.querySelectorAll('#customer-selection input[type=checkbox]');
+            checkboxes.forEach(checkbox => checkbox.disabled = !isPersonal);
+        }
+
+        // Set giá trị mặc định để hiển thị cả giây
+        function setDefaultDateTime(id) {
+            let now = new Date();
+            let formattedDateTime = now.toISOString().slice(0, 19); // Cắt bỏ phần "Z" của UTC
+            document.getElementById(id).value = formattedDateTime;
+        }
+
+        setDefaultDateTime("tuNgay");
+        setDefaultDateTime("denNgay");
+    </script>
 </head>
 <body>
 <section layout:fragment="content">
-<div class="container">
-    <h2 class="text-center mb-4">Thêm Phiếu Giảm Giá</h2>
-    <form>
-        <div class="mb-3">
-            <label class="form-label">Mã phiếu giảm giá</label>
-            <input type="text" class="form-control" placeholder="Nhập mã phiếu giảm giá">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Tên phiếu giảm giá</label>
-            <input type="text" class="form-control" placeholder="Nhập tên phiếu giảm giá">
-        </div>
+    <div class="container">
+        <h3 class="mb-4"><span class="header-title">Phiếu giảm giá</span> / <span
+                class="sub-title">Tạo phiếu giảm giá</span></h3>
         <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Hình thức giảm giá</label>
-                <select class="form-select">
-                    <option value="">Phần trăm</option>
-                    <option value="">VND</option>
-                </select>
+            <div class="col-md-6">
+                <form action="/add-phieu" method="post" th:object="${pgg}">
+                    <div class="mb-3 form-floating">
+                        <input type="text" th:field="*{maPhieuGiamGia}" class="form-control" id="maPhieu" placeholder="Nhập mã phiếu giảm giá">
+                        <label for="maPhieu">Mã phiếu giảm giá</label>
+                    </div>
+
+                    <div class="mb-3 form-floating">
+                        <input type="text" th:field="*{tenPhieuGiamGia}" class="form-control" id="tenPhieu" placeholder="Nhập tên phiếu giảm giá">
+                        <label for="tenPhieu">Tên phiếu giảm giá</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3 position-relative">
+                            <div class="form-floating">
+                                <input type="text" th:field="*{loai}" class="form-control pe-5 input-with-icon" id="giaTri"
+                                       placeholder=" ">
+                                <label for="giaTri">Giá trị</label>
+                            </div>
+                            <div class="icon-group">
+                                <i class="fas fa-percent" style="color: blue;"></i>
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 position-relative">
+                            <div class="form-floating">
+                                <input type="text" th:field="*{giaTriToiDa}" class="form-control pe-5 input-with-icon" id="giaTriToiDa"
+                                       placeholder=" ">
+                                <label for="giaTriToiDa">Giá trị tối đa</label>
+                            </div>
+                            <span class="icon-group"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3 position-relative">
+                            <div class="form-floating">
+                                <input type="text" th:field="*{soLuong}" class="form-control pe-5 input-with-icon" id="soLuong"
+                                       placeholder=" ">
+                                <label for="soLuong">Số lượng</label>
+                            </div>
+                            <span class="icon-group"><i class="fas fa-hashtag"></i></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3 position-relative">
+                            <div class="form-floating">
+                                <input type="text" th:field="*{dieuKien}" class="form-control pe-5 input-with-icon" id="dieuKien"
+                                       placeholder=" ">
+                                <label for="dieuKien">Điều kiện</label>
+                            </div>
+                            <span class="icon-group"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 form-floating">
+                        <input type="datetime-local" th:field="*{ngayBatDau}" class="form-control" id="tuNgay" step="1">
+                        <label for="tuNgay">Từ ngày</label>
+                    </div>
+
+                    <div class="mb-3 form-floating">
+                        <input type="datetime-local" th:field="*{ngayKetThuc}" class="form-control" id="denNgay" step="1">
+                        <label for="denNgay">Đến ngày</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Kiểu</label>
+                        <div>
+                            <input type="radio" th:field="*{kieu}" value="1" checked onclick="toggleCustomerSelection()">
+                            Công khai
+                            <input type="radio" th:field="*{kieu}" value="0" class="ms-3"
+                                   onclick="toggleCustomerSelection()"> Cá nhân
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Giá trị giảm</label>
-                <input type="number" class="form-control" placeholder="Nhập giá trị">
+            <div class="col-md-6" id="customer-selection">
+                <h4>Danh sách khách hàng</h4>
+                <input type="text" class="form-control mb-3" placeholder="Tìm kiếm khách hàng...">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Ngày sinh</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="checkbox" disabled></td>
+                        <td>Nguyễn Văn Nhật</td>
+                        <td>0261748212</td>
+                        <td>nhatnguyendzpro@gmail.com</td>
+                        <td>01-01-1990</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" disabled></td>
+                        <td>Anh Lê</td>
+                        <td>0562718362</td>
+                        <td>anhle@gmail.com</td>
+                        <td>20-12-2001</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Giá trị đơn tối thiểu</label>
-                <input type="number" class="form-control" placeholder="Nhập giá trị tối thiểu">
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Giá trị đơn tối đa</label>
-                <input type="number" class="form-control" placeholder="Nhập giá trị tối đa">
-            </div>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Thêm mới</button>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Ngày bắt đầu</label>
-                <input type="date" class="form-control">
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Ngày kết thúc</label>
-                <input type="date" class="form-control">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Loại phiếu giảm giá</label>
-                <select class="form-select">
-                    <option value="">Công khai</option>
-                    <option value="">Cá nhân</option>
-                </select>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Số lượng</label>
-                <input type="number" class="form-control" placeholder="Nhập số lượng">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-custom">Thêm Phiếu Giảm Giá</button>
-    </form>
-</div>
+    </div>
 </section>
 </body>
 </html>

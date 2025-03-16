@@ -18,7 +18,7 @@ public interface HoaDonRepo extends JpaRepository<HoaDon, Integer> {
             "(:trangThai IS NULL OR h.trangThai = :trangThai) AND " +
             "(:fromDate IS NULL OR h.ngayTao >= :fromDate) AND " +
             "(:toDate IS NULL OR h.ngayTao <= :toDate) " +
-            "ORDER BY h.ngayTao DESC")
+            "ORDER BY h.ngayTao DESC") // Sắp xếp theo ngày tạo giảm dần
     Page<HoaDon> searchHoaDon(@Param("maHoaDon") String maHoaDon,
                               @Param("trangThai") Integer trangThai,
                               @Param("fromDate") Date fromDate,

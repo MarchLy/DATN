@@ -40,11 +40,11 @@ public class PhieuGiamGia {
 
     @Column(name = "ngay_ket_thuc")
     private Date ngayKetThuc;
-
-    @Size(max = 50)
-    @Nationalized
-    @Column(name = "dieu_kien", length = 50)
-    private Integer dieuKien;
+//
+//    @Size(max = 50)
+//    @Nationalized
+//    @Column(name = "dieu_kien", length = 50)
+//    private Integer dieuKien;
 
     @Column(name = "loai")
     private Integer loai;

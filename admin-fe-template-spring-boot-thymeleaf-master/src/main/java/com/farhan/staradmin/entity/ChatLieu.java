@@ -1,11 +1,7 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +17,10 @@ public class ChatLieu {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 10)
+    @Size(max = 50)
+    @NotNull
     @Nationalized
-    @Column(name = "ma_chat_lieu", length = 10)
+    @Column(name = "ma_chat_lieu", nullable = false, length = 50)
     private String maChatLieu;
 
     @Size(max = 50)
@@ -31,7 +28,8 @@ public class ChatLieu {
     @Column(name = "ten_loai_vai", length = 50)
     private String tenLoaiVai;
 
-    @Column(name = "trang_thai")
-    private Boolean trangThai;
+    @NotNull
+    @Column(name = "trang_thai", nullable = false)
+    private Boolean trangThai = false;
 
 }

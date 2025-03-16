@@ -1,14 +1,6 @@
 package com.farhan.staradmin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,13 +15,8 @@ import java.time.Instant;
 @Table(name = "nhan_vien")
 public class NhanVien {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_chuc_vu")
-    private ChucVu idChucVu;
 
     @Size(max = 10)
     @Nationalized
@@ -77,5 +64,9 @@ public class NhanVien {
 
     @Column(name = "trang_thai")
     private Boolean trangThai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_chuc_vu")
+    private ChucVu idChucVu;
 
 }
